@@ -1,0 +1,13 @@
+DirectoryIndex disabled
+RewriteEngine On 
+
+# this will check if url has www
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+# returns a url with https://www as prefix
+RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# checks if url is HTTPS
+RewriteCond ${HTTPS} off
+RewriteRule ^(.*)$ https://results.smlazoclinic.com/$1 [R=301,L]
+RewriteRule ^(.*)$ http://127.0.0.1/$1 [P,L]
+
